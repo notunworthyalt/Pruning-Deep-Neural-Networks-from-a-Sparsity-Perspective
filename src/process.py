@@ -29,19 +29,19 @@ def make_control(control_name):
 def make_controls(mode, model):
     if model == 0:
         model_names = ['linear', 'mlp']
-        prune_iters = ['30']
+        prune_iters = ['2']
     elif model == 1:
         model_names = ['cnn']
-        prune_iters = ['30']
+        prune_iters = ['2']
     elif model == 2:
         model_names = ['resnet18']
-        prune_iters = ['15']
+        prune_iters = ['2']
     elif model == 3:
         model_names = ['wresnet28x8']
-        prune_iters = ['15']
+        prune_iters = ['2']
     elif model == 4:
         model_names = ['resnet50']
-        prune_iters = ['15']
+        prune_iters = ['2']
     else:
         raise ValueError('Not valid model')
     if mode == 'os':
