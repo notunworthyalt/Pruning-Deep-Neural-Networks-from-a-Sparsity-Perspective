@@ -1,8 +1,8 @@
 ---
 # control
 control:
-  data_name: MNIST
-  model_name: mlp
+  data_name: CIFAR10
+  model_name: resnet18
   prune_iters: 10
   prune_scope: layer
   prune_mode: si-0.5-1-0-1 # p-q-eta_r-gamma
