@@ -148,11 +148,11 @@ def process_control():
     else:
         cfg[model_name]['scheduler_name'] = 'CosineAnnealingLR'
     if model_name in ['linear', 'mlp', 'cnn']:
-        cfg[model_name]['num_epochs'] = 10
+        cfg[model_name]['num_epochs'] = 4
     elif model_name in ['resnet9', 'resnet18', 'wresnet28x2', 'wresnet28x8']:
-        cfg[model_name]['num_epochs'] = 10
+        cfg[model_name]['num_epochs'] = 4
     elif model_name in ['resnet50']:
-        cfg[model_name]['num_epochs'] = 10
+        cfg[model_name]['num_epochs'] = 4
     else:
         raise ValueError('Not valid model name')
     if cfg['data_name'] in ['ImageNet']:
