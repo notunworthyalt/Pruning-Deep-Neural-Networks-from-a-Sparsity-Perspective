@@ -49,8 +49,8 @@ class Compression:
                         num_prune = torch.floor(d * prune_ratio).long()
                         
                         total_neurons = d.size(0)
-                        desired_pruning_percentage = 0.75
-                        num_prune = torch.floor(total_neurons * desired_pruning_percentage).long()
+                        desired_pruning_percentage = 0.95
+                        num_prune = torch.floor(d * desired_pruning_percentage).long()
                         
                         pivot_value = torch.sort(pivot_param.view(pivot_param.size(0), -1), dim=1)[0][
                             torch.arange(pivot_param.size(0)), num_prune]
