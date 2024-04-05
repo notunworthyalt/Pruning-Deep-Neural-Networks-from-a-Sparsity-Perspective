@@ -47,6 +47,11 @@ class Compression:
                         retain_ratio = m / d
                         prune_ratio = torch.clamp(gamma * (1 - retain_ratio), 0, cfg['beta'])
                         num_prune = torch.floor(d * prune_ratio).long()
+                        
+                        total_neurons = d.size(0)
+                        desired_pruning_percentage = 0.75
+                        num_prune = torch.floor(total_neurons * desired_pruning_percentage).long()
+                        
                         pivot_value = torch.sort(pivot_param.view(pivot_param.size(0), -1), dim=1)[0][
                             torch.arange(pivot_param.size(0)), num_prune]
                         pivot_value = pivot_value.view(-1, *[1 for _ in range(pivot_param.dim() - 1)])
@@ -59,6 +64,7 @@ class Compression:
                     new_mask[name] = torch.where(pivot_mask, False, mask_i)
                     param.data = torch.where(new_mask[name].to(param.device), param.data,
                                              torch.tensor(0, dtype=torch.float, device=param.device))
+                    
         elif self.prune_scope == 'layer':
             new_mask = OrderedDict()
             for name, param in model.named_parameters():
